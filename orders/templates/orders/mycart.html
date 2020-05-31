@@ -1,0 +1,92 @@
+{% extends "orders/base.html" %}
+{% load static %}
+
+{% block title %}My Cart{% endblock %}
+
+
+{% block body %}
+<h1>My Cart</h1>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Toppings (optional)</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+            <!-- <th></th> -->
+        </tr>
+    </thead>
+    <form action=" {% url 'mycart' user %}" method="post">
+        {% csrf_token %}
+        {% for item in cartviews %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.category}}</td>
+            <td>
+                {% for topping in item.toppings %}
+                {{topping|linebreaks}}
+                {% endfor %}
+            </td>
+            <td>{{item.size}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="submit" name="{{item.customid}}" value="Remove"></td>
+        </tr>
+        {% endfor %}
+    </form>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{totalsum}}</td>
+    </tr>
+
+</table>
+<form action=" {% url 'checkout' user %}" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Confirm Order">
+</form>
+</br>
+</br>
+</br>
+<h1>Order History</h1>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Toppings (optional)</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Status</th>
+            <!-- <th></th> -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in orderhistory %}
+        <tr>
+            <td>{{item.date}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.category}}</td>
+            <td>
+                {% for topping in item.toppings %}
+                {{topping|linebreaks}}
+                {% endfor %}
+            </td>
+            <td>{{item.size}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.status}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

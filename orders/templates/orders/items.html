@@ -1,0 +1,51 @@
+{% extends "orders/base.html" %}
+{% load static %}
+
+{% block title %}{{name}}{% endblock %}
+
+
+{% block body %}
+
+
+<h1>{{name}}</h1>
+
+<ul class="itemdesc">
+    <li>{{name}}</li>
+    <li>{{category}}</li>
+    <li>{{size}}</li>
+    {% if name == "Special" %}
+    <li>Choose any 6 toppings!</li>
+    {% endif %}
+    <li class="chosentoppings" style="visibility: hidden;"></li>
+</ul>
+<form action="{% url 'add_to_cart' menuitem_id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {% if category == "Pizza" %}
+        <label for="toppings">Topping Options:</label>
+        <select name="toppings" id="toppings" class="form-control" multiple size="6">
+            {% for topping in toppings %}
+            <option value="{{topping}}">{{topping}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+        {% if category == "Subs" and menuitem_id == 82 or menuitem_id == 96%}
+        <label for="toppings">Topping Options:</label>
+        <select name="toppings" id="toppings" class="form-control" multiple size="6">
+            {% for topping in subtoppings %}
+            <option value="{{topping}}">{{topping}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+        {% if category == "Subs" and not menuitem_id == 82 and not menuitem_id == 96%}
+        <label for="toppings">Topping Options:</label>
+        <select name="toppings" id="toppings" class="form-control" multiple size="6">
+            <option value="Cheese">Cheese</option>
+        </select>
+        {% endif %}
+    </div>
+    <button type="submit" value="Order" class="btn btn-success">Order</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "orders/base.html" %}
+{% load static %}
+
+{% block title %}Checkouts{% endblock %}
+
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Toppings (optional)</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            {% for item in cartviews %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>
+                    {% for topping in item.toppings %}
+                    {{topping|linebreaks}}
+                    {% endfor %}
+                </td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{totalsum}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col">
+        <form action="{% url 'order' user %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Name: </label><input type="name" value="{{full_name}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Email: </label><input type="email" value="{{email}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Phone Number: </label><input type="text" value="Phone Number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Address: </label><input type="address" value="Address" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="radio" id="cash" name="cash" value="cash">
+                <label for="cash">Cash on Delivery</label>
+            </div>
+            <input type="submit" value="Order">
+        </form>
+    </div>
+
+</div>
+{% endblock %}

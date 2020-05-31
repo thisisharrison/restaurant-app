@@ -1,0 +1,185 @@
+{% extends "orders/base.html" %}
+{% load static %}
+
+{% block title %}Orders{% endblock %}
+
+
+{% block body %}
+<h1>Menu</h1>
+<div>
+    <h2><a name="pizzas"></a>Pizzas</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Size</th>
+                <!-- <th scope="col">Large</th> -->
+                <th scope="col">Crust</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menuItem %}
+            {% if item.category_id == 1 %}
+            <tr>
+                <td scope="row"><a href="{% url 'item' item.id %}">{{ item.name }}</a></td>
+                <td>{{item.size}}</td>
+                <td>{{item.crust}}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2><a name="subs"></a>Subs</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Size</th>
+                <!-- <th scope="col">Large</th> -->
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menuItem %}
+            {% if item.category_id == 2 and item.name != "Steak + Cheese"%}
+            <tr>
+                <td scope="row"><a href="{% url 'item' item.id %}">{{ item.name }}</a></td>
+                <td>{{item.size}}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endif %}
+            {% if item.name == "Steak + Cheese"%}
+            <tr>
+                <td scope="row"><a href="{% url 'item' item.id %}">{{ item.name }}</a></td>
+                <td>{{item.size}}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            <tr>
+                <td>+ Mushrooms</td>
+                <td>Any Size</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>+ Green Peppers</td>
+                <td>Any Size</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>+ Onions</td>
+                <td>Any Size</td>
+                <td>0.5</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            <tr>
+                <td>Extra Cheese on any sub</td>
+                <td>Any Size</td>
+                <td>0.5</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2><a name="pastas"></a>Pastas</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menuItem %}
+            {% if item.category_id == 3 %}
+            <tr>
+                <td scope="row"><a href="{% url 'item' item.id %}">{{ item.name }}</a></td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2><a name="salads"></a>Salads</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menuItem %}
+            {% if item.category_id == 4 %}
+            <tr>
+                <td scope="row"><a href="{% url 'item' item.id %}">{{ item.name }}</a></td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2><a name="platters"></a>Dinner Platters</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Size</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menuItem %}
+            {% if item.category_id == 5 %}
+            <tr>
+                <td scope="row"><a href="{% url 'item' item.id %}">{{ item.name }}</a></td>
+                <td>{{ item.size }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+<div>
+    My Cart
+</div>
+<div>
+    <a href="{% url 'mycart' user %}">My Cart</a>
+</div>
+{% endblock %}
+<!-- <div>Item view</div>
+    <div>
+        <ul>
+            <li>{{name}}</li>
+            <li>{{category}}</li>
+        </ul>
+        <form action="{% url 'add_to_cart' '1' %}" method="post">
+            {% csrf_token %}
+            {% if category %}
+            <select name="size">
+                {% for size in sizes %}
+                <option value="{{size}}">{{size}}</option>
+                {% endfor %}
+            </select>
+            <select name="crust">
+                {% for crust in crusts %}
+                <option value="{{crust}}">{{crust}}</option>
+                {% endfor %}
+            </select>
+            <select name="toppings" multiple size="6">
+                {% for topping in toppings %}
+                <option value="{{topping}}">{{topping}}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+            <input type="submit" value="Order">
+        </form>
+    </div> -->
+</body>
+
+</html>

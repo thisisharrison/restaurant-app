@@ -1,0 +1,27 @@
+id,name,price,category_id,crust_id,quantity,size_id
+6,Cheese,12.7,1,1,1,3
+7,1 topping,13.7,1,1,1,3
+8,2 toppings,15.2,1,1,1,3
+9,3 toppings,16.2,1,1,1,3
+10,Cheese,6.5,2,1,1,3
+11,Cheese,17.95,1,1,1,4
+12,1 topping,19.95,1,1,1,4
+13,2 toppings,21.95,1,1,1,4
+14,3 toppings,23.95,1,1,1,4
+15,Cheese,24.45,1,2,1,3
+16,1 topping,26.45,1,2,1,3
+17,2 toppings,28.45,1,2,1,3
+18,3 toppings,29.45,1,2,1,3
+19,Cheese,38.7,1,2,1,4
+20,1 topping,40.7,1,2,1,4
+21,2 toppings,42.7,1,2,1,4
+22,3 toppings,44.7,1,2,1,4
+23,Cheese,7.95,2,NULL,1,4
+24,Italian,6.5,2,NULL,1,3
+25,Italian,7.95,2,NULL,1,4
+26,Ham + Cheese,6.5,2,NULL,1,3
+27,Ham + Cheese,7.95,2,NULL,1,4
+28,Meatball,6.5,2,NULL,1,3
+29,Meatball,7.95,2,NULL,1,4
+30,Tuna,6.5,2,NULL,1,3
+31,Tuna,7.95,2,NULL,1,4
