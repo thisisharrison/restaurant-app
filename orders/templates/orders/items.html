@@ -21,7 +21,7 @@
 <form action="{% url 'add_to_cart' menuitem_id %}" method="post">
     {% csrf_token %}
     <div class="form-group">
-        {% if category == "Pizza" and name != "Cheese"%}
+        {% if category == "Pizza" and name != "Cheese" %}
         <label for="toppings">Topping Options:</label>
         <select name="toppings" id="toppings" class="form-control" multiple size="6">
             {% for topping in toppings %}
