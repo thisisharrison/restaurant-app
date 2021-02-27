@@ -1,4 +1,4 @@
-# Project 3 - Django Restaurant App
+# CS50W Project 3 - Django Restaurant App
 
 CS50 Web Programming with Python and JavaScript
 
