@@ -1,6 +1,6 @@
-# Project 3
+# Project 3 - Django Restaurant App
 
-Web Programming with Python and JavaScript
+CS50 Web Programming with Python and JavaScript
 
 Menu: 
 Using Import CSV, I created the menu on CSV file and wrote it into the database. 
